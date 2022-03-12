@@ -1,0 +1,28 @@
+<h1> Register User </h1>
+
+<.form let={f} for={@changeset} to: Routes.auth_by_pwd_path(@conn, :signUpByPw, @changeset)>
+  <%= IO.inspect(@changeset)
+  if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+  <%= label f, :email %>
+  <%= text_input f, :email,  required: true  %>
+  <%= error_tag f, :email %>
+   <br>
+   <br>
+  <%= label f, :pwd %>
+  <%= text_input f, :pwd,  required: true, minlength: 6, maxlength: 20, type: "password"  %>
+  <%= error_tag f, :pwd %>
+   <br>
+   <br>
+  <%= label f, :password_confirm  %>
+  <%= text_input f, :password_confirm,  required: true , type: "password" %>
+  <%= error_tag f, :password_confirm %>
+
+  <div>
+    <%= submit "Register" %>
+  </div>
+</.form>
+
