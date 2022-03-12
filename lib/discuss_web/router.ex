@@ -2,7 +2,7 @@ defmodule DiscussWeb.Router do
   use DiscussWeb, :router
 
   pipeline :browser do
-    plug(Ueberauth)
+    # plug(Ueberauth)
     plug(:accepts, ["html"])
     plug(:fetch_session)
     plug(:fetch_live_flash)
@@ -18,9 +18,14 @@ defmodule DiscussWeb.Router do
 
   scope "/auth", DiscussWeb do
     pipe_through(:browser)
+    get("/register", AuthByPwdController, :new)
+    get("/login", AuthByPwdController, :login)
+    post("/login", AuthByPwdController, :signInByPw)
+    post("/register", AuthByPwdController, :signUpByPw)
     get("/signout", AuthController, :signout)
     get("/:provider", AuthController, :request)
     get("/:provider/callback", AuthController, :callback)
+
   end
 
   scope "/", DiscussWeb do

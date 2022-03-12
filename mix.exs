@@ -51,12 +51,15 @@ defmodule Discuss.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:ueberauth, "~> 0.6"},
       {:ueberauth_github, "~> 0.7"},
-      {:poison, "~> 5.0"}
+      {:poison, "~> 5.0"},
+      {:comeonin, "~> 5.3"},
+      {:argon2_elixir, "~> 3.0"},
+      {:virtual_fields_filler, "~> 0.3.0"}
     ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
-  # For example, to install project dependencies and perform other setup tasks, run:
+  # For example, to install projemict dependencies and perform other setup tasks, run:
   #
   #     $ mix setup
   #

@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :discuss, Discuss.Repo,
-  username: "postgres",
-  password: "123456",
+  username: "hongnhat",
+  password: "1952001",
   hostname: "localhost",
   database: "discuss_dev",
   show_sensitive_data_on_connection_error: true,

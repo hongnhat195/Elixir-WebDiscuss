@@ -2,12 +2,12 @@ defmodule Discuss.Repo.Migrations.CreateTopics do
   use Ecto.Migration
 
   def change do
-    create table(:topics) do
-      add :title, :string
+    # create table(:topics) do
+    #   add :title, :string
 
-      # timestamps()
-    end
+    #   # timestamps()
+    # end
 
-    create unique_index(:topics, [:title])
+    # create unique_index(:topics, [:title])
   end
 end
