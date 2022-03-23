@@ -1,6 +1,6 @@
 <h1>Edit Topic</h1>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.topic_path(@conn, :update, @topic))  |> IO.inspect(label: "Test")  %>
- <%# Gán vào :action = Routes.topic_path(@conn, :update, @topic) %>
- <%# <%IO.inspect() %> %>
+<%= render "form.html", Map.put(assigns, :action, Routes.topic_path(@conn, :update, @topic))    %>
+<%# |> IO.inspect(label: "Test") %>
+
 <span><%= link "Back", to: Routes.topic_path(@conn, :index) %></span>

@@ -1,11 +1,13 @@
 defmodule DiscussWeb.TopicController do
   use DiscussWeb, :controller
   import Ecto.Query, warn: false
+  import Plug.Conn
   alias Discuss.Repo
   alias Discuss.Model
   alias Discuss.Model.Topic
 
   plug(DiscussWeb.Plugs.RequireAuth when action in [:new, :create, :update, :delete])
+  plug (:check_topic_owner when action in [:create, :update, :delete, :edit])
 
   def index(conn, _params) do
     topics = Model.list_topics()
@@ -58,7 +60,7 @@ defmodule DiscussWeb.TopicController do
   end
 
   def edit(conn, %{"id" => id}) do
-    # IO.inspect(conn)
+    # IO.inspect(conn,label: "check_topic_owner")
     topic = Model.get_topic!(id)
     changeset = Model.change_topic(topic)
     render(conn, "edit.html", topic: topic, changeset: changeset)
@@ -85,5 +87,19 @@ defmodule DiscussWeb.TopicController do
     conn
     |> put_flash(:info, "Topic deleted successfully.")
     |> redirect(to: Routes.topic_path(conn, :index))
+  end
+
+  def check_topic_owner(conn, _params) do
+    %{params: %{"id" => topic_id}} = conn
+    IO.inspect(conn.assigns.user.id, label: "User_id")
+    IO.inspect(topic_id, label: "Topic_id")
+    if Repo.get(Topic, topic_id).user_id == conn.assigns.user.id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You can not edit that")
+      |> redirect(to: Routes.topic_path(conn, :index))
+      |> halt()
+    end
   end
 end

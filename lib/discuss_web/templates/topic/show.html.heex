@@ -11,3 +11,22 @@
 
 <span><%= link "Edit", to: Routes.topic_path(@conn, :edit, @topic) %></span> |
 <span><%= link "Back", to: Routes.topic_path(@conn, :index) %></span>
+<br/>
+<br/>
+
+<div class="input-field">
+    <textarea class="materialize-textarea"></textarea>
+    <button class="btn btn-primary">Add comment</button>
+    <br/>
+    <br/>
+    <ul class="collection">
+    
+    </ul>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", ()=> {
+       window.createSocket(<%= @topic.id %>)
+    })
+</script>

@@ -23,6 +23,7 @@ defmodule DiscussWeb do
 
       import Plug.Conn
       import DiscussWeb.Gettext
+      import Phoenix.LiveView.Controller
       alias DiscussWeb.Router.Helpers, as: Routes
     end
   end
