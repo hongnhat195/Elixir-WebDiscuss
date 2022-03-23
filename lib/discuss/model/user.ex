@@ -1,6 +1,8 @@
 defmodule Discuss.Model.User do
   use Ecto.Schema
   import Ecto.Changeset
+  @behaviour VirtualFieldsFiller
+  alias __MODULE__
 
   @derive {Jason.Encoder, only: [:email]}
 
@@ -11,6 +13,7 @@ defmodule Discuss.Model.User do
     field :password, :string
     field :pwd, :string, virtual: true
     field :password_confirm, :string, virtual: true
+
     has_many :topics, Discuss.Model.Topic
     has_many :comments, Discuss.Model.Comment
 
